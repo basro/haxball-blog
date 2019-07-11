@@ -1,0 +1,29 @@
+---
+# Feel free to add content and custom Front Matter to this file.
+# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+
+layout: default
+---
+
+<div>
+{% for post in paginator.posts %}
+	<div class="post">
+		<a class="post-title" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+		<p class="date">{{ post.date | date: "%b %-d, %Y" }}{% if post.author %} • {{ post.author }}{% endif %}{% if page.meta %} • {{ post.meta }}{% endif %}</p>
+
+		<div class="post-content">
+			{{ post.content }}
+		</div>
+	</div>
+{% endfor %}
+
+	<div style='display:flex;'>
+	{% if paginator.previous_page %}
+		<a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Newer posts</a>
+	{% endif %}
+
+	{% if paginator.next_page %}
+		<a style='margin-left: auto' href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older posts &raquo;</a>
+	{% endif %}
+	</div>
+</div>
